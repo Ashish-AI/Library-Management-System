@@ -327,93 +327,6 @@ void modifyStudent()
 }
 
 
-void DeleteStudent()
-{
-	char n[6];
-	int flag=0;
-	system("CLS");
-	cout<<"\n\n\nDELETE STUDENT";
-	cout<<"\n\nEnter the Admission Number:- ";
-	cin>>n;
-	fp.open("student.dat",ios::in|ios::out);
-	fstream fp2; //local to this function
-	fp2.open("temp.dat",ios::out);
-	fp.seekg(0,ios::beg); //from its current position it should move to 0 ie starting 
-	while(fp.read((char*)&st,sizeof(student)))
-	{
-		if(st.retadmno(),n!=0) //student not found
-		{
-			fp2.write((char*)&st,sizeof(student));
-		}
-		else   //student found
-		{
-			flag=1;
-		}
-	}
-	fp2.close();
-	fp.close(); 
-	//req data is written in temp file
-	remove("student.dat"); //file deleted
-	rename("temp.dat","student.dat");// file renamed
-	if(flag==1)
-	{
-		cout<<"\n\n\tRecord Deleted Successfuly !!";
-	}
-	else
-	{
-		cout<<"\n\n\tRecord not found !!";
-	}
-		cout<<"\n\nPress 1 to go back ";
-	int x;
-	cin>>x;
-	if(x==1)
-	return;
-}
-
-
-void deleteBook()
-{
-	char n[6];
-	int flag=0;
-	system("CLS");
-	cout<<"\n\n\nDELETE BOOK";
-	cout<<"\n\nEnter the Book Number Number:- ";
-	cin>>n;
-	fp.open("book.dat",ios::in|ios::out);
-	fstream fp2; //local to this function
-	fp2.open("Temp.dat",ios::out);
-	fp.seekg(0,ios::beg); //from its current position it should move to 0 ie starting 
-	while(fp.read((char*)&bk,sizeof(Book)))
-	{
-		if(bk.retbno(),n!=0) //student not found
-		{
-			fp2.write((char*)&bk,sizeof(Book));
-		}
-		else   //student found
-		{
-			flag=1;
-		}
-	}
-	fp2.close();
-	fp.close(); 
-	//req data is written in temp file
-	remove("book.dat"); //file deleted
-	rename("temp.dat","book.dat");// file renamed
-	if(flag==1)
-	{
-		cout<<"\n\n\tRecord Deleted Successfuly !!";
-	}
-	else
-	{
-		cout<<"\n\n\tRecord not found !!";
-	}
-		cout<<"\n\nPress 1 to go back ";
-	int x;
-	cin>>x;
-	if(x==1)
-	return;
-}
-
 
 void displayAllStudent()
 {
@@ -630,13 +543,11 @@ void Administrator()
 		cout<<"\n\t\t\t\t\t\t2. Display All Student Record";
 		cout<<"\n\t\t\t\t\t\t3. Display Specefic Student Record";
 		cout<<"\n\t\t\t\t\t\t4. Modify Student Record";
-		cout<<"\n\t\t\t\t\t\t5. Delete Student Record";
-		cout<<"\n\t\t\t\t\t\t6. Create Book Record";
-		cout<<"\n\t\t\t\t\t\t7. Display All Books Record";
-		cout<<"\n\t\t\t\t\t\t8. Display Specefic Book Record";
-		cout<<"\n\t\t\t\t\t\t9. Modify Book Record";
-		cout<<"\n\t\t\t\t\t\t10. Delete Book Record";
-		cout<<"\n\t\t\t\t\t\t11. Back To Main Menu\n\n";
+		cout<<"\n\t\t\t\t\t\t5. Create Book Record";
+		cout<<"\n\t\t\t\t\t\t6. Display All Books Record";
+		cout<<"\n\t\t\t\t\t\t7. Display Specefic Book Record";
+		cout<<"\n\t\t\t\t\t\t8. Modify Book Record";
+		cout<<"\n\t\t\t\t\t\t9. Back To Main Menu\n\n";
 		cout<<" Choose Your Option\n";
 		cin>>var;
 		switch(var)
@@ -654,24 +565,18 @@ void Administrator()
 				modifyStudent();
 				break;
 			case 5:
-				DeleteStudent();
-				break;
-			case 6:
 				writebook();
 				break;
-			case 7:
+			case 6:
 				displayAllBooks();
 				break;
-			case 8:
+			case 7:
 			DisplaySpeceficBook();
 				break;
-			case 9:
+			case 8:
 				modifybook();
 				break;
 			case 10:
-				deleteBook();
-				break;
-			case 11:
 				return;
 				break;
 			default:
